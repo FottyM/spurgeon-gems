@@ -1,3 +1,7 @@
+## Charles H. Spurgeon sermons.
+
+Charles H. Spurgeon sermons from spurgeongems scraped in with puppeteer in stored in a JSON.
+
 ## Commands
 
 TSDX scaffolds your new library inside `/src`.
