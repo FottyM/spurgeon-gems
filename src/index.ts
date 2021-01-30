@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer';
 import fs from 'fs';
 
 (async () => {
+  console.time('done...');
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto('https://www.spurgeongems.org/spurgeon-audio/');
@@ -31,7 +32,14 @@ import fs from 'fs';
         }),
   );
 
-  fs.writeFileSync('spurgeongems.json', JSON.stringify(data, null, 2));
+  fs.mkdir('json', {recursive: true}, async (err) =>{
+    if (err) {
+      await browser.close();
+      throw err;
+    };
+    fs.writeFileSync('json/spurgeongems.json', JSON.stringify(data, null, 2));
+  });
 
+  console.timeEnd('done...');
   await browser.close();
 })();
